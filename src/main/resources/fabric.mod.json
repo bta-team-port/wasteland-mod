@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "wasteland",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Wasteland Mod",
+  "description": "A port of Silver_Weasel's original Wasteland mod.",
   "authors": [
-    "Turnip Labs"
+    "Team Port"
   ],
   "contact": {
     "homepage": "",
@@ -18,21 +18,27 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-			"turniplabs.examplemod.ExampleMod"
-    ],
+		"preLaunch": [
+			"teamport.wasteland.Wasteland"
+		],
 		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+			"teamport.wasteland.Wasteland"
 		],
 		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+			"teamport.wasteland.Wasteland"
 		],
-		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
+		"beforeClientStart": [
+			"teamport.wasteland.Wasteland"
+		],
+		"afterClientStart": [
+			"teamport.wasteland.Wasteland"
+		],
+		"terrain-api": [
+			"teamport.wasteland.compat.terrainapi.TerrainAPIPlugin"
 		]
 	},
   "mixins": [
-      "examplemod.mixins.json"
+		"wasteland.mixins.json"
   ],
 
   "depends": {
