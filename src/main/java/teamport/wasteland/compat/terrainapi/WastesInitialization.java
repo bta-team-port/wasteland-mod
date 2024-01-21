@@ -11,6 +11,7 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTaigaBushy;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTaigaTall;
 import teamport.wasteland.Wasteland;
+import teamport.wasteland.world.generation.WorldFeatureRuins;
 import teamport.wasteland.world.generation.WorldFeatureWastesFire;
 import useless.terrainapi.generation.StructureFeatures;
 import useless.terrainapi.generation.overworld.OverworldBiomeFeatures;
@@ -68,6 +69,7 @@ public class WastesInitialization extends BaseInitialization {
 
 	@Override
 	protected void initRandom() {
+		randomFeatures.addFeatureSurface(new WorldFeatureRuins(), 64);
 		randomFeatures.addFeatureSurface(new WorldFeatureWastesFire(), 8);
 		randomFeatures.addFeature(new WorldFeatureFlowers(Block.mushroomBrown.id), 4, 1.0F);
 		randomFeatures.addFeature(new WorldFeatureFlowers(Block.mushroomRed.id), 8, 1.0F);

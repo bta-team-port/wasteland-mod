@@ -8,6 +8,9 @@
   "authors": [
     "Team Port"
   ],
+	"contributors": [
+		"Silver_Weasel (original mod)"
+	],
   "contact": {
     "homepage": "",
     "sources": ""
@@ -18,9 +21,6 @@
 
   "environment": "*",
   "entrypoints": {
-		"preLaunch": [
-			"teamport.wasteland.Wasteland"
-		],
 		"beforeGameStart": [
 			"teamport.wasteland.Wasteland"
 		],

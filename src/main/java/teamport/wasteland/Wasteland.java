@@ -15,7 +15,7 @@ import teamport.wasteland.world.biome.BiomeWastesTaiga;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 
-public class Wasteland implements GameStartEntrypoint, ClientStartEntrypoint, PreLaunchEntrypoint {
+public class Wasteland implements GameStartEntrypoint, ClientStartEntrypoint {
     public static final String MOD_ID = "wasteland";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static Biome BIOME_WASTES;
@@ -27,7 +27,16 @@ public class Wasteland implements GameStartEntrypoint, ClientStartEntrypoint, Pr
 
 	@Override
 	public void beforeGameStart() {
+		BIOME_WASTES = Biomes.register("wasteland.biome.wastes", new BiomeWasteland());
+		BIOME_DEADFOREST = Biomes.register("wasteland.biomes.forest", new BiomeDeadForest());
+		BIOME_WASTESTAIGA = Biomes.register("wasteland.biomes.taiga", new BiomeWastesTaiga());
+		BIOME_WASTESDESERT = Biomes.register("wasteland.biomes.desert", new BiomeWastesDesert());
+		WASTELAND_WORLD_DEFAULT = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland("wasteland.world.default"));
+		WASTELAND_WORLD_EXTENDED = WorldTypes.register("wasteland.world.extended", new WorldTypeWastelandExtended("wasteland.world.extended"));
+		BiomeProviderWasteland.init();
 
+		if (WastelandConfig.cfg == null) WastelandConfig.writeConfig();
+		else WastelandConfig.cfg.loadConfig();
 		LOGGER.info("Wasteland initialized. Stay strong, survivor...");
 	}
 
@@ -44,19 +53,5 @@ public class Wasteland implements GameStartEntrypoint, ClientStartEntrypoint, Pr
 	@Override
 	public void afterClientStart() {
 
-	}
-
-	@Override
-	public void onPreLaunch() {
-		BIOME_WASTES = Biomes.register("wasteland.biome.wastes", new BiomeWasteland());
-		BIOME_DEADFOREST = Biomes.register("wasteland.biomes.forest", new BiomeDeadForest());
-		BIOME_WASTESTAIGA = Biomes.register("wasteland.biomes.taiga", new BiomeWastesTaiga());
-		BIOME_WASTESDESERT = Biomes.register("wasteland.biomes.desert", new BiomeWastesDesert());
-		WASTELAND_WORLD_DEFAULT = new WorldTypeWasteland("wasteland.world.default");
-		WASTELAND_WORLD_EXTENDED = new WorldTypeWastelandExtended("wasteland.world.extended");
-		WorldTypes.register("wasteland.world.default", WASTELAND_WORLD_DEFAULT);
-		WorldTypes.register("wasteland.world.extended", WASTELAND_WORLD_EXTENDED);
-
-		BiomeProviderWasteland.init();
 	}
 }

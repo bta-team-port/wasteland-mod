@@ -10,6 +10,9 @@ public class BiomeWastesDesert extends Biome {
 		this.setColor(16775936);
 		this.setTopBlock(Block.sand.id);
 		this.setFillerBlock(Block.sandstone.id);
+		this.spawnableCreatureList.clear();
+		this.spawnableAmbientCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
 	}
 
 	@Override
