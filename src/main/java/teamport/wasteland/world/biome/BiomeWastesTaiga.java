@@ -9,6 +9,8 @@ public class BiomeWastesTaiga extends Biome {
 		this.setTopBlock(Block.dirt.id);
 		this.setFillerBlock(Block.dirt.id);
 		this.setSurfaceSnow();
+		this.spawnableAmbientCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
 	}
 
 	@Override
