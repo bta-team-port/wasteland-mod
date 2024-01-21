@@ -15,22 +15,22 @@ import java.util.HashMap;
 public class TerrainWastesConfig extends OreConfig {
 	@Expose
 	@SerializedName("Biome Random Grass Block")
-	public HashMap<String, String> biomeRandomGrassBlock = new HashMap();
+	public HashMap<String, String> biomeRandomGrassBlock = new HashMap<>();
 	@Expose
 	@SerializedName("Grass Density")
-	public HashMap<String, Integer> grassDensityMap = new HashMap();
+	public HashMap<String, Integer> grassDensityMap = new HashMap<>();
 	@Expose
 	@SerializedName("Flower Density")
-	public HashMap<String, Integer> flowerDensityMap = new HashMap();
+	public HashMap<String, Integer> flowerDensityMap = new HashMap<>();
 	@Expose
 	@SerializedName("Yellow Flower Density")
-	public HashMap<String, Integer> yellowFlowerDensityMap = new HashMap();
+	public HashMap<String, Integer> yellowFlowerDensityMap = new HashMap<>();
 	@Expose
 	@SerializedName("Tree Density")
-	public HashMap<String, Integer> treeDensityMap = new HashMap();
+	public HashMap<String, Integer> treeDensityMap = new HashMap<>();
 	@Expose
 	@SerializedName("Lake Density")
-	public HashMap<String, Integer> lakeDensityMap = new HashMap();
+	public HashMap<String, Integer> lakeDensityMap = new HashMap<>();
 	public int defaultLakeDensity = 4;
 
 	public void addRandomGrassBlock(Biome biome, Block block) {
