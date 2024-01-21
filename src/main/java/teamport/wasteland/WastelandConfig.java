@@ -11,6 +11,8 @@ public class WastelandConfig {
 	static {
 		Toml properties = new Toml("Tropicraft's TOML Config");
 
+	static {
+		Toml properties = new Toml("Wasteland's TOML Config");
 
 		properties.addCategory("Config")
 			.addEntry("HarderMobs", false)
