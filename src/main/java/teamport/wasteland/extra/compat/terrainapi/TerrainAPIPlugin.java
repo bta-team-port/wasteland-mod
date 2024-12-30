@@ -1,4 +1,4 @@
-package teamport.wasteland.compat.terrainapi;
+package teamport.wasteland.extra.compat.terrainapi;
 
 import useless.terrainapi.api.TerrainAPI;
 

@@ -27,14 +27,8 @@
 		"afterGameStart": [
 			"teamport.wasteland.Wasteland"
 		],
-		"beforeClientStart": [
-			"teamport.wasteland.Wasteland"
-		],
-		"afterClientStart": [
-			"teamport.wasteland.Wasteland"
-		],
 		"terrain-api": [
-			"teamport.wasteland.compat.terrainapi.TerrainAPIPlugin"
+			"teamport.wasteland.extra.compat.terrainapi.TerrainAPIPlugin"
 		]
 	},
   "mixins": [
@@ -42,8 +36,9 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.13.3",
-		"terrain-api": ">=1.4.0-7.1"
+		"minecraft": "^7.2-beta",
+		"fabricloader": ">=0.15.5",
+		"terrain-api": ">=1.4.0-7.2-pre1"
   },
   "suggests": {
   }

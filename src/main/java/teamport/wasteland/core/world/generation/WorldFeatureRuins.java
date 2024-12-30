@@ -1,4 +1,4 @@
-package teamport.wasteland.world.generation;
+package teamport.wasteland.core.world.generation;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.entity.TileEntityChest;
@@ -6,14 +6,12 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
-import net.minecraft.core.world.generate.feature.WorldFeatureDungeon;
 
 import java.util.Random;
 
 public class WorldFeatureRuins extends WorldFeature {
 	private ItemStack generateSurfaceLoot(Random random) {
 		switch (random.nextInt(10)) {
-			default: case 0: return null;
 			case 1: return new ItemStack(Item.ingotIron, random.nextInt(4) + 1);
 			case 2: return new ItemStack(Item.foodBread);
 			case 3: return random.nextInt(2) == 0 ? new ItemStack(Item.foodStewMushroom) : new ItemStack(Item.bowl);
@@ -23,12 +21,12 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 7: return new ItemStack(Item.toolPickaxeWood, 1, random.nextInt(63));
 			case 8: return new ItemStack(Item.toolSwordWood, 1, random.nextInt(63));
 			case 9: return new ItemStack(Block.logOak);
+			case 0: default: return null;
 		}
 	}
 
 	private ItemStack generateBasementLoot(Random random) {
-		switch (random.nextInt(10)) {
-			default: case 0: return null;
+		switch (random.nextInt(11)) {
 			case 1: return new ItemStack(Item.sulphur, random.nextInt(4) + 1);
 			case 2: return new ItemStack(Item.bone, random.nextInt(4) + 1);
 			case 3: return new ItemStack(Item.string, random.nextInt(4) + 1);
@@ -38,12 +36,12 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 7: return new ItemStack(Item.ammoChargeExplosive);
 			case 8: return new ItemStack(Item.bucketWater);
 			case 9: return random.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
+			case 0: default: return null;
 		}
 	}
 
 	private ItemStack generateFarmLoot(Random random) {
-		switch (random.nextInt(12)) {
-			default: case 0: return null;
+		switch (random.nextInt(14)) {
 			case 1: return new ItemStack(Item.seedsWheat, random.nextInt(3) + 1);
 			case 2: return new ItemStack(Item.seedsPumpkin, random.nextInt(3) + 1);
 			case 3: return new ItemStack(Item.wheat, random.nextInt(3) + 1);
@@ -55,6 +53,9 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 9: return new ItemStack(Block.mushroomBrown, random.nextInt(2) + 1);
 			case 10: return new ItemStack(Block.mushroomRed, random.nextInt(2) + 1);
 			case 11: return new ItemStack(Item.bucket);
+			case 12: return random.nextInt(100) == 0 ? new ItemStack(Block.saplingOak) : null;
+			case 13: return random.nextInt(200) == 0 ? new ItemStack(Block.saplingCacao) : null;
+			case 0: default: return null;
 		}
 	}
 
@@ -83,10 +84,6 @@ public class WorldFeatureRuins extends WorldFeature {
 				for (int _z = z - 3; _z < z + 4; _z++) {
 					if (random.nextInt(3) != 0) {
 						switch (random.nextInt(4)) {
-							default:
-							case 0:
-								world.setBlockWithNotify(_x, _y, _z, Block.cobbleStone.id);
-								break;
 							case 1:
 								world.setBlockWithNotify(_x, _y, _z, Block.cobbleStoneMossy.id);
 								break;
@@ -95,6 +92,10 @@ public class WorldFeatureRuins extends WorldFeature {
 								break;
 							case 3:
 								world.setBlockWithNotify(_x, y + 1, _z, Block.glass.id);
+								break;
+							case 0:
+							default:
+								world.setBlockWithNotify(_x, _y, _z, Block.cobbleStone.id);
 								break;
 						}
 					} else world.setBlockWithNotify(_x, _y, _z, 0);

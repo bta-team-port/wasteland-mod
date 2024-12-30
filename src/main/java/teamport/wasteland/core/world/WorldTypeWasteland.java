@@ -1,4 +1,4 @@
-package teamport.wasteland.world;
+package teamport.wasteland.core.world;
 
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.provider.BiomeProvider;

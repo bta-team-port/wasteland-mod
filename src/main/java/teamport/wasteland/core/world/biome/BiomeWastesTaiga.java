@@ -1,16 +1,15 @@
-package teamport.wasteland.world.biome;
+package teamport.wasteland.core.world.biome;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.world.biome.Biome;
-import net.minecraft.core.world.weather.Weather;
 
-public class BiomeDeadForest extends Biome {
-
-	public BiomeDeadForest() {
+public class BiomeWastesTaiga extends Biome {
+	public BiomeWastesTaiga() {
+		super("wastes_taiga");
 		this.setColor(16775936);
 		this.setTopBlock(Block.dirt.id);
 		this.setFillerBlock(Block.dirt.id);
-		this.spawnableCreatureList.clear();
+		this.setSurfaceSnow();
 		this.spawnableAmbientCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 	}

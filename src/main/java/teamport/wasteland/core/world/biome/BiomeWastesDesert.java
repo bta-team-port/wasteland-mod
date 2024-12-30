@@ -1,4 +1,4 @@
-package teamport.wasteland.world.biome;
+package teamport.wasteland.core.world.biome;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.world.biome.Biome;
@@ -6,6 +6,7 @@ import net.minecraft.core.world.weather.Weather;
 
 public class BiomeWastesDesert extends Biome {
 	public BiomeWastesDesert() {
+		super("wastes_desert");
 		this.setBlockedWeathers(Weather.overworldRain, Weather.overworldSnow);
 		this.setColor(16775936);
 		this.setTopBlock(Block.sand.id);

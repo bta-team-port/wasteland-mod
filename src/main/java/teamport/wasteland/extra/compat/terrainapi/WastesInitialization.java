@@ -1,4 +1,4 @@
-package teamport.wasteland.compat.terrainapi;
+package teamport.wasteland.extra.compat.terrainapi;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.world.biome.Biome;
@@ -11,8 +11,9 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTaigaBushy;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTaigaTall;
 import teamport.wasteland.Wasteland;
-import teamport.wasteland.world.generation.WorldFeatureRuins;
-import teamport.wasteland.world.generation.WorldFeatureWastesFire;
+import teamport.wasteland.core.world.generation.WorldFeatureRuins;
+import teamport.wasteland.core.world.generation.WorldFeatureWastesFire;
+import useless.terrainapi.TerrainMain;
 import useless.terrainapi.generation.StructureFeatures;
 import useless.terrainapi.generation.overworld.OverworldBiomeFeatures;
 import useless.terrainapi.generation.overworld.OverworldFunctions;
@@ -23,6 +24,7 @@ import useless.terrainapi.initialization.BaseInitialization;
 import java.util.Random;
 
 import static teamport.wasteland.Wasteland.MOD_ID;
+import static useless.terrainapi.generation.overworld.OverworldFunctions.overworldConfig;
 
 public class WastesInitialization extends BaseInitialization {
 	private final Random treeRand = new Random();
@@ -44,7 +46,7 @@ public class WastesInitialization extends BaseInitialization {
 	protected void initStructure() {
 		structureFeatures.addFeature(OverworldFunctions::generateLavaLakeFeature, null);
 		structureFeatures.addFeature(OverworldFunctions::generateDungeons, null);
-		structureFeatures.addFeature(OverworldFunctions::generateLabyrinths, null);
+		structureFeatures.addFeature(OverworldFunctions::generateLabyrinths, new Object[]{overworldConfig.getFeatureChanceOrDefault(TerrainMain.MOD_ID, "labyrinth", 700)});
 		structureFeatures.addFeature(OverworldFunctions::generateRandomFluid, new Object[]{20, Block.fluidLavaFlowing.id});
 		structureFeatures.addFeature(OverworldFunctions::generateRandomFluid, new Object[]{1, Block.fluidWaterFlowing.id});
 	}

@@ -1,17 +1,9 @@
-package teamport.wasteland.world;
-
-import net.minecraft.core.world.World;
-import net.minecraft.core.world.generate.chunk.ChunkGenerator;
-import net.minecraft.core.world.type.WorldTypeOverworldExtended;
+package teamport.wasteland.core.world;
 
 public class WorldTypeWastelandExtended extends WorldTypeWasteland {
 
 	public WorldTypeWastelandExtended(String languageKey) {
 		super(languageKey);
-	}
-
-	public int getMinY() {
-		return 0;
 	}
 
 	public int getMaxY() {

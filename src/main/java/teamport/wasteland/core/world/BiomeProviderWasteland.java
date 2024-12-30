@@ -1,12 +1,10 @@
-package teamport.wasteland.world;
+package teamport.wasteland.core.world;
 
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.biome.Biome;
-import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.biome.data.BiomeRange;
 import net.minecraft.core.world.biome.data.BiomeRangeMap;
 import net.minecraft.core.world.biome.provider.BiomeProvider;
-import net.minecraft.core.world.biome.provider.BiomeProviderOverworld;
 import net.minecraft.core.world.noise.PerlinSimplexNoise;
 import net.minecraft.core.world.type.WorldType;
 import teamport.wasteland.Wasteland;

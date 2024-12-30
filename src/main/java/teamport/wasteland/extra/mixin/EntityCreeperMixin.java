@@ -1,4 +1,4 @@
-package teamport.wasteland.mixin;
+package teamport.wasteland.extra.mixin;
 
 import net.minecraft.core.entity.monster.EntityCreeper;
 import net.minecraft.core.entity.monster.EntityMonster;
@@ -20,12 +20,9 @@ public abstract class EntityCreeperMixin extends EntityMonster {
 
 	@Redirect(method = "attackEntity", at = @At(value = "INVOKE", target = "net/minecraft/core/entity/monster/EntityCreeper.getPowered ()Z"))
 	private boolean wasteland_hardCreeper(EntityCreeper instance) {
-		if (WastelandConfig.cfg.getBoolean("Config.HarderMobs")) {
-			if (getPowered()) {
-				this.world.createExplosion(this, this.x, this.y, this.z, 12.0F);
-			} else {
-				this.world.createExplosion(this, this.x, this.y, this.z, 6.0F);
-			}
+		EntityCreeper thisAs = (EntityCreeper) (Object) this;
+		if (WastelandConfig.cfg.getBoolean("Config.harderMobs")) {
+			world.createExplosion(thisAs, x, y, z, getPowered() ? 12 : 6);
 			return true;
 		}
 		return false;

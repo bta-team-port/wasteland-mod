@@ -1,4 +1,4 @@
-package teamport.wasteland.mixin;
+package teamport.wasteland.extra.mixin;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockDeadBush;

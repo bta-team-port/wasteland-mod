@@ -3,8 +3,8 @@ wasteland.world.default.desc=No grass, no surface water, and no replantable tree
 wasteland.world.extended.name=Wasteland (EXTENDED)
 wasteland.world.extended.desc=No grass, no surface water, and no replantable trees.
 
-wasteland.biome.wastes=Wasteland
-wasteland.biome.forest=Dead Forest
-wasteland.biome.taiga=Cold Forest
-wasteland.biome.desert=Desert
+biome.wastes=Wasteland
+biome.wastes_forest=Dead Forest
+biome.wastes_taiga=Cold Forest
+biome.wastes_desert=Desert
 

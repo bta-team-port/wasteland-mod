@@ -6,23 +6,15 @@ import turniplabs.halplibe.util.toml.Toml;
 import static teamport.wasteland.Wasteland.MOD_ID;
 
 public class WastelandConfig {
+	private static final Toml TOML = new Toml("Wasteland TOML Config");
 	public static TomlConfigHandler cfg;
 
 	static {
-		Toml properties = new Toml("Tropicraft's TOML Config");
+		TOML.addCategory("Config")
+			.addEntry("harderMobs", false)
+			.addEntry("finiteWater", false)
+			.addEntry("badSun", false);
 
-	static {
-		Toml properties = new Toml("Wasteland's TOML Config");
-
-		properties.addCategory("Config")
-			.addEntry("HarderMobs", false)
-			.addEntry("FiniteWater", false)
-			.addEntry("BadSun", false);
-
-		cfg = new TomlConfigHandler(MOD_ID, properties);
-	}
-
-	protected static void writeConfig() {
-		cfg.writeConfig();
+		cfg = new TomlConfigHandler(MOD_ID, TOML);
 	}
 }

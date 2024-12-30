@@ -1,4 +1,4 @@
-package teamport.wasteland.mixin;
+package teamport.wasteland.extra.mixin;
 
 import net.minecraft.core.block.BlockFluid;
 import net.minecraft.core.block.BlockFluidFlowing;
@@ -16,6 +16,6 @@ public abstract class BlockFluidFlowingMixin extends BlockFluid {
 
 	@Redirect(method = "updateTick", at = @At(value = "INVOKE", target = "net/minecraft/core/block/material/Material.isSolid ()Z"))
 	private boolean wasteland_finiteWater(Material instance) {
-        return !WastelandConfig.cfg.getBoolean("Config.FiniteWater");
+        return !WastelandConfig.cfg.getBoolean("Config.finiteWater");
     }
 }
