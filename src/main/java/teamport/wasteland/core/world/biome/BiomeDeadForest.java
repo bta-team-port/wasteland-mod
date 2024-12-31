@@ -2,6 +2,11 @@ package teamport.wasteland.core.world.biome;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.world.biome.Biome;
+import net.minecraft.core.world.generate.feature.WorldFeature;
+import net.minecraft.core.world.generate.feature.tree.WorldFeatureTree;
+import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
+
+import java.util.Random;
 
 public class BiomeDeadForest extends Biome {
 
@@ -18,5 +23,14 @@ public class BiomeDeadForest extends Biome {
 	@Override
 	public int getSkyColor(float temperature) {
 		return 0;
+	}
+
+	@Override
+	public WorldFeature getRandomWorldGenForTrees(Random random) {
+		if (random.nextInt(20) == 0) {
+			return new WorldFeatureTree(0, Block.logBirch.id, 10);
+		} else {
+			return new WorldFeatureTreeFancy(0, Block.logOak.id);
+		}
 	}
 }

@@ -32,10 +32,10 @@ public abstract class EntityPlayerMixin extends EntityLiving {
 		if (world.getWorldType() instanceof WorldTypeWasteland && WastelandConfig.cfg.getBoolean("Config.badSun")) {
 			long daysPassed = world.getWorldTime() / 24000;
 			if (daysPassed > 14 && world.isDaytime() && inventory.armorInventory[3] == null && !gamemode.isImmuneToFire()) {
-				float brightness = getBrightness(1.0F);
-				if (brightness > 0.5F
+				float brightness = getBrightness(1);
+				if (brightness > 0.7F
 					&& world.canBlockSeeTheSky(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z))
-					&& random.nextFloat() * 30.0F < (brightness - 0.4F) * 2.0F
+					&& random.nextFloat() * 30.0F < (brightness - 0.4F) * 2
 					&& (world.getCurrentWeather() != Weather.overworldFog || world.weatherManager.getWeatherPower() < 0.75F)) {
 					remainingFireTicks = 300;
 				}

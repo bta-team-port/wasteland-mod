@@ -16,7 +16,7 @@ public class WorldFeatureWastesFire extends WorldFeature {
 			int _z = z + random.nextInt(16) - random.nextInt(16);
 
 			if (random.nextInt(16) == 0) {
-				if (world.getBlockId(_x, _y - 1, _z) == Block.dirt.id && !world.isAirBlock(_x, _y - 1, _z))
+				if (world.getBlockId(_x, _y - 1, _z) == Block.mudBaked.id && !world.isAirBlock(_x, _y - 1, _z))
 					world.setBlockWithNotify(_x, _y - 1, _z, Block.netherrack.id);
 
 				if (world.isAirBlock(_x, _y, _z) && world.getBlockId(_x, _y - 1, _z) == Block.netherrack.id) {

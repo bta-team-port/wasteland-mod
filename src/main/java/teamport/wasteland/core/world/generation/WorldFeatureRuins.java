@@ -36,12 +36,13 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 7: return new ItemStack(Item.ammoChargeExplosive);
 			case 8: return new ItemStack(Item.bucketWater);
 			case 9: return random.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
+			case 10: return new ItemStack(Item.dustSugar, random.nextInt(6) + 1);
 			case 0: default: return null;
 		}
 	}
 
 	private ItemStack generateFarmLoot(Random random) {
-		switch (random.nextInt(14)) {
+		switch (random.nextInt(17)) {
 			case 1: return new ItemStack(Item.seedsWheat, random.nextInt(3) + 1);
 			case 2: return new ItemStack(Item.seedsPumpkin, random.nextInt(3) + 1);
 			case 3: return new ItemStack(Item.wheat, random.nextInt(3) + 1);
@@ -53,8 +54,11 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 9: return new ItemStack(Block.mushroomBrown, random.nextInt(2) + 1);
 			case 10: return new ItemStack(Block.mushroomRed, random.nextInt(2) + 1);
 			case 11: return new ItemStack(Item.bucket);
-			case 12: return random.nextInt(100) == 0 ? new ItemStack(Block.saplingOak) : null;
-			case 13: return random.nextInt(200) == 0 ? new ItemStack(Block.saplingCacao) : null;
+			case 12: return new ItemStack(Item.foodCherry, random.nextInt(1));
+			case 13: return new ItemStack(Item.sugarcane, random.nextInt(3) + 1);
+			case 14: return random.nextInt(100) == 0 ? new ItemStack(Block.saplingOak) : null;
+			case 15: return random.nextInt(200) == 0 ? new ItemStack(Block.saplingCacao) : null;
+			case 16: return random.nextInt(200) == 0 ? new ItemStack(Block.saplingCherry) : null;
 			case 0: default: return null;
 		}
 	}
@@ -132,16 +136,7 @@ public class WorldFeatureRuins extends WorldFeature {
 			}
 		}
 
-		// Random Flood
-		if (random.nextInt(2) == 0) {
-			for (int _x = x - 2; _x < x + 3; _x++) {
-				for (int _z = z - 2; _z < z + 3; _z++) {
-					world.setBlockWithNotify(_x, y - 5, _z, Block.fluidWaterStill.id);
-				}
-			}
-		} else {
-			this.generateBasementTrap(world, random, x, y, z);
-		}
+		this.generateBasementTrap(world, random, x, y, z);
 	}
 
 	private void generateRuinsFarm(World world, Random random, int x, int y, int z) {
@@ -163,10 +158,10 @@ public class WorldFeatureRuins extends WorldFeature {
 			}
 		}
 
-		// 'Mud' Ground
+		// 'Farm' Ground
 		for (int _x = x - 2; _x < x + 3; _x++) {
 			for (int _z = z + 4; _z < z + 8; _z++) {
-				world.setBlockWithNotify(_x, y - 2, _z, Block.mudBaked.id);
+				world.setBlockWithNotify(_x, y - 2, _z, Block.mud.id);
 			}
 		}
 
@@ -188,60 +183,60 @@ public class WorldFeatureRuins extends WorldFeature {
 	// Keep chests OUT of the check! This is because they will spit out over an inventory of items.
 	@Override
 	public boolean generate(World world, Random random, int x, int y, int z) {
-		if (y < world.getHeightBlocks() && y > 64) {
-			for (int _x = x - 3; _x < x + 4; _x++) {
-				for (int _y = y; _y < y + 2; _y++) {
-					for (int _z = z - 3; _z < z + 4; _z++) {
-						if (world.getBlockId(_x, _y, _z) == 0) {
-							this.generateRuins1(world, random, x, y, z);
+		if (y < world.getHeightBlocks() && world.getBlock(x, y - 1, z) != null && world.getBlock(x, y, z) == null) {
+				for (int _x = x - 3; _x < x + 4; _x++) {
+					for (int _y = y; _y < y + 2; _y++) {
+						for (int _z = z - 3; _z < z + 4; _z++) {
+							if (world.getBlockId(_x, _y, _z) == 0) {
+								this.generateRuins1(world, random, x, y, z);
+							}
 						}
 					}
 				}
-			}
 
-			// Basement
-			if (random.nextInt(3) == 0) {
-				this.generateRuinsBasement(world, random, x, y, z);
+				// Basement
+				if (random.nextInt(3) == 0) {
+					this.generateRuinsBasement(world, random, x, y, z);
 
-				world.setBlockAndMetadataWithNotify(x, y - 5, z - 2, Block.chestPlanksOak.id, 2);
-				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y - 5, z - 2);
+					world.setBlockAndMetadataWithNotify(x, y - 5, z - 2, Block.chestPlanksOak.id, 2);
+					TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y - 5, z - 2);
 
-				for(int i = 0; i < 6; ++i) {
-					ItemStack stack = this.generateBasementLoot(random);
-					if (stack != null) {
+					for (int i = 0; i < 6; ++i) {
+						ItemStack stack = this.generateBasementLoot(random);
+						if (stack != null && tile != null) {
+							tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
+						}
+					}
+				}
+
+				// Farm
+				if (random.nextInt(8) == 0) {
+					this.generateRuinsFarm(world, random, x, y, z);
+
+					world.setBlockAndMetadataWithNotify(x + 2, y - 1, z + 4, Block.chestPlanksOak.id, 3);
+					TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x + 2, y - 1, z + 4);
+
+					for (int i = 0; i < 4; ++i) {
+						ItemStack stack = this.generateFarmLoot(random);
+						if (stack != null && tile != null) {
+							tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
+						}
+					}
+				}
+
+				// House Chest
+				world.setBlockWithNotify(x, y, z + 2, Block.chestPlanksOak.id);
+				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y, z + 2);
+
+				for (int i = 0; i < 3; ++i) {
+					ItemStack stack = this.generateSurfaceLoot(random);
+					if (stack != null && tile != null) {
 						tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
 					}
 				}
+
+				return true;
 			}
-
-			// Farm
-			if (random.nextInt(8) == 0) {
-				this.generateRuinsFarm(world, random, x, y, z);
-
-				world.setBlockAndMetadataWithNotify(x + 2, y - 1, z + 4, Block.chestPlanksOak.id, 3);
-				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x + 2, y - 1, z + 4);
-
-				for(int i = 0; i < 4; ++i) {
-					ItemStack stack = this.generateFarmLoot(random);
-					if (stack != null) {
-						tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
-					}
-				}
-			}
-
-			// House Chest
-			world.setBlockWithNotify(x, y, z + 2, Block.chestPlanksOak.id);
-			TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y, z + 2);
-
-			for(int i = 0; i < 3; ++i) {
-				ItemStack stack = this.generateSurfaceLoot(random);
-				if (stack != null) {
-					tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
-				}
-			}
-
-			return true;
-		}
 		return false;
 	}
 }

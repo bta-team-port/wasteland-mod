@@ -16,6 +16,6 @@ public abstract class BlockDeadBushMixin extends Block {
 
 	@Inject(method = "canThisPlantGrowOnThisBlockID", at = @At("TAIL"), cancellable = true)
 	private void wasteland_canGrowOnDirt(int i, CallbackInfoReturnable<Boolean> cir) {
-		cir.setReturnValue(i == Block.dirt.id);
+		cir.setReturnValue(i == Block.sand.id || i == Block.dirtScorched.id || i == Block.mudBaked.id);
 	}
 }

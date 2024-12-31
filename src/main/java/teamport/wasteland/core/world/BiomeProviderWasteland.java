@@ -271,8 +271,8 @@ public class BiomeProviderWasteland extends BiomeProvider {
 
 	public static void init() {
 		brm.addRange(Wasteland.BIOME_WASTESTAIGA, new BiomeRange(0.0, 0.1, 0.0, 0.1, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_DEADFOREST, new BiomeRange(0.1, 0.3, 0.0, 0.3, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_DEADFOREST, new BiomeRange(0.0, 0.3, 0.1, 0.3, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.BIOME_WASTESFOREST, new BiomeRange(0.1, 0.3, 0.0, 0.3, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.BIOME_WASTESFOREST, new BiomeRange(0.0, 0.3, 0.1, 0.3, 0.0, 1.0, 0.0, 1.0));
 		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.3, 0.7, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0));
 		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.7, 1.0, 0.0, 0.7, 0.0, 1.0, 0.0, 1.0));
 		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.0, 0.3, 0.3, 1.0, 0.0, 1.0, 0.0, 1.0));

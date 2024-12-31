@@ -18,7 +18,7 @@ public class Wasteland implements ModInitializer, GameStartEntrypoint {
     public static final String MOD_ID = "wasteland";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static Biome BIOME_WASTES;
-	public static Biome BIOME_DEADFOREST;
+	public static Biome BIOME_WASTESFOREST;
 	public static Biome BIOME_WASTESTAIGA;
 	public static Biome BIOME_WASTESDESERT;
 	public static WorldType WASTELAND_WORLD_DEFAULT;
@@ -33,7 +33,7 @@ public class Wasteland implements ModInitializer, GameStartEntrypoint {
 	@Override
 	public void beforeGameStart() {
 		BIOME_WASTES = Biomes.register("biome.wastes", new BiomeWasteland());
-		BIOME_DEADFOREST = Biomes.register("biome.wastes_forest", new BiomeDeadForest());
+		BIOME_WASTESFOREST = Biomes.register("biome.wastes_forest", new BiomeDeadForest());
 		BIOME_WASTESTAIGA = Biomes.register("biome.wastes_taiga", new BiomeWastesTaiga());
 		BIOME_WASTESDESERT = Biomes.register("biome.wastes_desert", new BiomeWastesDesert());
 		WASTELAND_WORLD_DEFAULT = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland("wasteland.world.default"));
