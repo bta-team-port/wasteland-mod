@@ -8,21 +8,19 @@ import net.minecraft.core.world.type.WorldTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import teamport.wasteland.core.world.*;
-import teamport.wasteland.core.world.biome.BiomeDeadForest;
-import teamport.wasteland.core.world.biome.BiomeWasteland;
-import teamport.wasteland.core.world.biome.BiomeWastesDesert;
-import teamport.wasteland.core.world.biome.BiomeWastesTaiga;
+import teamport.wasteland.core.world.biome.*;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 
 public class Wasteland implements ModInitializer, GameStartEntrypoint {
     public static final String MOD_ID = "wasteland";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static Biome BIOME_WASTES;
-	public static Biome BIOME_WASTESFOREST;
-	public static Biome BIOME_WASTESTAIGA;
-	public static Biome BIOME_WASTESDESERT;
-	public static WorldType WASTELAND_WORLD_DEFAULT;
-	public static WorldType WASTELAND_WORLD_EXTENDED;
+	public static Biome biomeWastes;
+	public static Biome biomeWastesForest;
+	public static Biome biomewastesTaiga;
+	public static Biome biomeWastesDesert;
+	public static Biome biomeWastesCity;
+	public static WorldType worldType_Wasteland;
+	public static WorldType worldType_Wasteland_Extended;
 
 	@Override
 	public void onInitialize() {
@@ -32,17 +30,17 @@ public class Wasteland implements ModInitializer, GameStartEntrypoint {
 
 	@Override
 	public void beforeGameStart() {
-		BIOME_WASTES = Biomes.register("biome.wastes", new BiomeWasteland());
-		BIOME_WASTESFOREST = Biomes.register("biome.wastes_forest", new BiomeDeadForest());
-		BIOME_WASTESTAIGA = Biomes.register("biome.wastes_taiga", new BiomeWastesTaiga());
-		BIOME_WASTESDESERT = Biomes.register("biome.wastes_desert", new BiomeWastesDesert());
-		WASTELAND_WORLD_DEFAULT = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland("wasteland.world.default"));
-		WASTELAND_WORLD_EXTENDED = WorldTypes.register("wasteland.world.extended", new WorldTypeWastelandExtended("wasteland.world.extended"));
+		biomeWastes = Biomes.register("biome.wastes", new BiomeWasteland());
+		biomeWastesForest = Biomes.register("biome.wastes_forest", new BiomeWastesForest());
+		biomewastesTaiga = Biomes.register("biome.wastes_taiga", new BiomeWastesTaiga());
+		biomeWastesDesert = Biomes.register("biome.wastes_desert", new BiomeWastesDesert());
+		biomeWastesCity = Biomes.register("biome.wastes_city", new BiomeWastesCity());
+		worldType_Wasteland = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland("wasteland.world.default"));
+		worldType_Wasteland_Extended = WorldTypes.register("wasteland.world.extended", new WorldTypeWastelandExtended("wasteland.world.extended"));
 		BiomeProviderWasteland.init();
 	}
 
 	@Override
 	public void afterGameStart() {
-
 	}
 }

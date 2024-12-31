@@ -18,6 +18,6 @@ public class BiomeWastesDesert extends Biome {
 
 	@Override
 	public int getSkyColor(float temperature) {
-		return 0;
+		return 0x000000;
 	}
 }

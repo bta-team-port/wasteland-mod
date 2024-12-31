@@ -1,10 +1,11 @@
 wasteland.world.default.name=Wasteland (CLASSIC)
-wasteland.world.default.desc=No grass, no surface water, and no replantable trees.
+wasteland.world.default.desc=Rare vegetation and water.
 wasteland.world.extended.name=Wasteland (EXTENDED)
-wasteland.world.extended.desc=No grass, no surface water, and no replantable trees.
+wasteland.world.extended.desc=Rare vegetation and water.
 
 biome.wastes=Wasteland
 biome.wastes_forest=Dead Forest
 biome.wastes_taiga=Cold Forest
 biome.wastes_desert=Desert
+biome.wastes_city=Ruined City
 

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import teamport.wasteland.Wasteland;
 import teamport.wasteland.core.world.generation.WorldFeatureRuins;
+import teamport.wasteland.core.world.generation.WorldFeatureSkyscraperOne;
 import teamport.wasteland.core.world.generation.WorldFeatureWastesFire;
 
 import java.util.Random;
@@ -80,7 +81,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 				yf -= rand.nextInt(10) + 30;
 			}
 
-			if (rand.nextInt(700) == 0) {
+			if (rand.nextInt(1400) == 0) {
 				Random lRand = chunk.getChunkRandom(75644760L);
 				(new WorldFeatureLabyrinth()).generate(world, lRand, xf, yf, zf);
 			}
@@ -92,6 +93,20 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(32) == 0) {
 				new WorldFeatureRuins().generate(world, rand, xf, yf, zf);
+			}
+		}
+
+		byte buildingByte = 0;
+		if (biome == Wasteland.biomeWastesCity) {
+			buildingByte = 32;
+		}
+
+		for (int chance = 0; chance < buildingByte; chance++) {
+			int xf = x + rand.nextInt(16) + 8;
+			int yf = minY + rand.nextInt(rangeY);
+			int zf = z + rand.nextInt(16) + 8;
+			if (rand.nextInt(20) == 0) {
+				new WorldFeatureSkyscraperOne().generate(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -168,20 +183,20 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			++treeDensity;
 		}
 
-		if (biome == Wasteland.BIOME_WASTES) {
+		if (biome == Wasteland.biomeWastes) {
 			treeDensity = 1;
 		}
 
 
-		if (biome == Wasteland.BIOME_WASTESDESERT) {
+		if (biome == Wasteland.biomeWastesDesert) {
 			treeDensity = 0;
 		}
 
-		if (biome == Wasteland.BIOME_WASTESFOREST) {
+		if (biome == Wasteland.biomeWastesForest) {
 			treeDensity += treeRand + 3;
 		}
 
-		if (biome == Wasteland.BIOME_WASTESTAIGA) {
+		if (biome == Wasteland.biomewastesTaiga) {
 			treeDensity += treeRand + 4;
 		}
 
@@ -208,7 +223,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 
 		// PLANTS //
 		byte grassByte = 0;
-		if (biome == Wasteland.BIOME_WASTESTAIGA) {
+		if (biome == Wasteland.biomewastesTaiga) {
 			grassByte = 1;
 		}
 
@@ -223,11 +238,11 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 
 
 		byte bushByte = 0;
-		if (biome == Wasteland.BIOME_WASTES) {
+		if (biome == Wasteland.biomeWastes) {
 			bushByte = 1;
 		}
 
-		if (biome == Wasteland.BIOME_WASTESDESERT) {
+		if (biome == Wasteland.biomeWastesDesert) {
 			bushByte = 2;
 		}
 
@@ -239,7 +254,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 		}
 
 		byte cactusByte = 0;
-		if (biome == Wasteland.BIOME_WASTESDESERT) {
+		if (biome == Wasteland.biomeWastesDesert) {
 			cactusByte += 5;
 		}
 
@@ -267,7 +282,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 		// WASTES FIRE //
 		byte fireByte = 3;
 
-		if (biome == Wasteland.BIOME_WASTESTAIGA) {
+		if (biome == Wasteland.biomewastesTaiga) {
 			fireByte = 0;
 		}
 

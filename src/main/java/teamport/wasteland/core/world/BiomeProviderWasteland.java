@@ -270,13 +270,13 @@ public class BiomeProviderWasteland extends BiomeProvider {
 	}
 
 	public static void init() {
-		brm.addRange(Wasteland.BIOME_WASTESTAIGA, new BiomeRange(0.0, 0.1, 0.0, 0.1, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTESFOREST, new BiomeRange(0.1, 0.3, 0.0, 0.3, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTESFOREST, new BiomeRange(0.0, 0.3, 0.1, 0.3, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.3, 0.7, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.7, 1.0, 0.0, 0.7, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTES, new BiomeRange(0.0, 0.3, 0.3, 1.0, 0.0, 1.0, 0.0, 1.0));
-		brm.addRange(Wasteland.BIOME_WASTESDESERT, new BiomeRange( 0.7, 1.0, 0.7, 1.0, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomewastesTaiga, new BiomeRange(0.0, 0.1, 0.0, 0.1, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastesForest, new BiomeRange(0.1, 0.3, 0.0, 0.3, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastesForest, new BiomeRange(0.0, 0.3, 0.1, 0.3, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastes, new BiomeRange(0.0, 0.3, 0.3, 1.0, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastes, new BiomeRange(0.3, 0.9, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastesCity, new BiomeRange(0.9, 1.0, 0.0, 0.7, 0.0, 1.0, 0.0, 1.0));
+		brm.addRange(Wasteland.biomeWastesDesert, new BiomeRange( 0.9, 1.0, 0.7, 1.0, 0.0, 1.0, 0.0, 1.0));
 		brm.lock();
 	}
 }

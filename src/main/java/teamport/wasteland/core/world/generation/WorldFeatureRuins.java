@@ -32,7 +32,7 @@ public class WorldFeatureRuins extends WorldFeature {
 			case 3: return new ItemStack(Item.string, random.nextInt(4) + 1);
 			case 4: return new ItemStack(Item.toolBow, 1, random.nextInt(383));
 			case 5: return new ItemStack(Item.ammoArrow, random.nextInt(8) + 1);
-			case 6: return new ItemStack(Item.handcannonUnloaded);
+			case 6: return new ItemStack(Item.handcannonUnloaded, 1, random.nextInt(100));
 			case 7: return new ItemStack(Item.ammoChargeExplosive);
 			case 8: return new ItemStack(Item.bucketWater);
 			case 9: return random.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
@@ -183,7 +183,7 @@ public class WorldFeatureRuins extends WorldFeature {
 	// Keep chests OUT of the check! This is because they will spit out over an inventory of items.
 	@Override
 	public boolean generate(World world, Random random, int x, int y, int z) {
-		if (y < world.getHeightBlocks() && world.getBlock(x, y - 1, z) != null && world.getBlock(x, y, z) == null) {
+		if (y < world.getHeightBlocks() && world.getBlock(x, y - 1, z) == Block.mudBaked && world.getBlock(x, y, z) == null) {
 				for (int _x = x - 3; _x < x + 4; _x++) {
 					for (int _y = y; _y < y + 2; _y++) {
 						for (int _z = z - 3; _z < z + 4; _z++) {
@@ -201,7 +201,7 @@ public class WorldFeatureRuins extends WorldFeature {
 					world.setBlockAndMetadataWithNotify(x, y - 5, z - 2, Block.chestPlanksOak.id, 2);
 					TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y - 5, z - 2);
 
-					for (int i = 0; i < 6; ++i) {
+					for (int i = 0; i < 4; ++i) {
 						ItemStack stack = this.generateBasementLoot(random);
 						if (stack != null && tile != null) {
 							tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
@@ -216,7 +216,7 @@ public class WorldFeatureRuins extends WorldFeature {
 					world.setBlockAndMetadataWithNotify(x + 2, y - 1, z + 4, Block.chestPlanksOak.id, 3);
 					TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x + 2, y - 1, z + 4);
 
-					for (int i = 0; i < 4; ++i) {
+					for (int i = 0; i < 3; ++i) {
 						ItemStack stack = this.generateFarmLoot(random);
 						if (stack != null && tile != null) {
 							tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);

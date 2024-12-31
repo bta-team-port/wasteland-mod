@@ -8,13 +8,13 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
 
 import java.util.Random;
 
-public class BiomeDeadForest extends Biome {
+public class BiomeWastesForest extends Biome {
 
-	public BiomeDeadForest() {
+	public BiomeWastesForest() {
 		super("wastes_forest");
 		this.setColor(16775936);
-		this.setTopBlock(Block.dirt.id);
-		this.setFillerBlock(Block.dirt.id);
+		this.setTopBlock(Block.dirtScorched.id);
+		this.setFillerBlock(Block.dirtScorched.id);
 		this.spawnableCreatureList.clear();
 		this.spawnableAmbientCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
@@ -22,7 +22,7 @@ public class BiomeDeadForest extends Biome {
 
 	@Override
 	public int getSkyColor(float temperature) {
-		return 0;
+		return 0x000000;
 	}
 
 	@Override
