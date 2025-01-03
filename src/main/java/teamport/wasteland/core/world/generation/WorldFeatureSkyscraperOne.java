@@ -51,7 +51,7 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 		}
 	}
 
-	private void generateLevel(World world, Random rand, int x, int y, int z) {
+	private void generateLevel(World world, Random rand, int x, int y, int z, int pillarID) {
 		// Walls
 		for (int _x = x - 6; _x < x + 7; _x++) {
 			for (int _y = y; _y < y + 4; _y++) {
@@ -78,14 +78,14 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 		for (int _y = y; _y < y + 4; _y++) {
 			// ZValsNeg XVals
 			for (int xFE : new int[]{x - 6, x - 3, x, x + 3, x + 6}) {
-				world.setBlockWithNotify(xFE, _y, z - 6, Block.logOak.id);
-				world.setBlockWithNotify(xFE, _y, z + 6, Block.logOak.id);
+				world.setBlockWithNotify(xFE, _y, z - 6, pillarID);
+				world.setBlockWithNotify(xFE, _y, z + 6, pillarID);
 			}
 
 			// XValsNeg ZVals
 			for (int zFE : new int[]{z - 6, z - 3, z, z + 3, z + 6}) {
-				world.setBlockWithNotify(x - 6, _y, zFE, Block.logOak.id);
-				world.setBlockWithNotify(x + 6, _y, zFE, Block.logOak.id);
+				world.setBlockWithNotify(x - 6, _y, zFE, pillarID);
+				world.setBlockWithNotify(x + 6, _y, zFE, pillarID);
 			}
 		}
 
@@ -259,8 +259,9 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 			}
 
 			// Ground level floor
+			int pillarID = random.nextInt(2) == 0 ? Block.logOak.id : Block.brickClay.id;
 			for (int height = 0; height < 5; height++) {
-				generateLevel(world, random, x, y + (height * 4), z);
+				generateLevel(world, random, x, y + (height * 4), z, pillarID);
 				generateRandomFloor(world, random, x, y + (height * 4), z);
 			}
 

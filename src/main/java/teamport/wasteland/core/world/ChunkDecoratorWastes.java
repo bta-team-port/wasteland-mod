@@ -10,17 +10,15 @@ import net.minecraft.core.world.generate.chunk.ChunkDecorator;
 import net.minecraft.core.world.generate.feature.*;
 import net.minecraft.core.world.noise.PerlinNoise;
 import net.minecraft.core.world.type.WorldTypes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import teamport.wasteland.Wasteland;
 import teamport.wasteland.core.world.generation.WorldFeatureRuins;
 import teamport.wasteland.core.world.generation.WorldFeatureSkyscraperOne;
+import teamport.wasteland.core.world.generation.WorldFeatureStore;
 import teamport.wasteland.core.world.generation.WorldFeatureWastesFire;
 
 import java.util.Random;
 
 public class ChunkDecoratorWastes implements ChunkDecorator {
-	private static final Logger log = LoggerFactory.getLogger(ChunkDecoratorWastes.class);
 	private final World world;
 	private final PerlinNoise treeDensityNoise;
 	private final int treeDensityOverride;
@@ -101,12 +99,23 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			buildingByte = 32;
 		}
 
+		// Skyscraper
 		for (int chance = 0; chance < buildingByte; chance++) {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(20) == 0) {
 				new WorldFeatureSkyscraperOne().generate(world, rand, xf, yf, zf);
+			}
+		}
+
+		// Store
+		for (int chance = 0; chance < buildingByte; chance++) {
+			int xf = x + rand.nextInt(16) + 8;
+			int yf = minY + rand.nextInt(rangeY);
+			int zf = z + rand.nextInt(16) + 8;
+			if (rand.nextInt(30) == 0) {
+				new WorldFeatureStore().generate(world, rand, xf, yf, zf);
 			}
 		}
 

@@ -153,7 +153,7 @@ public class WorldFeatureRuins extends WorldFeature {
 		for (int _x = x - 3; _x < x + 5; _x++) {
 			for (int _y = y - 6; _y < y - 1; _y++) {
 				for (int _z = z + 4; _z < z + 9; _z++) {
-					world.setBlockWithNotify(_x, _y, _z, Block.dirt.id);
+					world.setBlockWithNotify(_x, _y, _z, Block.mudBaked.id);
 				}
 			}
 		}
