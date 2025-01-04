@@ -10,33 +10,33 @@ import net.minecraft.core.world.generate.feature.WorldFeature;
 import java.util.Random;
 
 public class WorldFeatureRuins extends WorldFeature {
-	private ItemStack generateSurfaceLoot(Random random) {
-		switch (random.nextInt(10)) {
-			case 1: return new ItemStack(Item.ingotIron, random.nextInt(4) + 1);
+	private ItemStack generateSurfaceLoot(Random rand) {
+		switch (rand.nextInt(10)) {
+			case 1: return new ItemStack(Item.ingotIron, rand.nextInt(4) + 1);
 			case 2: return new ItemStack(Item.foodBread);
-			case 3: return random.nextInt(2) == 0 ? new ItemStack(Item.foodStewMushroom) : new ItemStack(Item.bowl);
+			case 3: return rand.nextInt(2) == 0 ? new ItemStack(Item.foodStewMushroom) : new ItemStack(Item.bowl);
 			case 4: return new ItemStack(Item.bucket);
-			case 5: return new ItemStack(Item.stick, random.nextInt(4) + 1);
-			case 6: return new ItemStack(Item.toolAxeWood, 1, random.nextInt(63));
-			case 7: return new ItemStack(Item.toolPickaxeWood, 1, random.nextInt(63));
-			case 8: return new ItemStack(Item.toolSwordWood, 1, random.nextInt(63));
+			case 5: return new ItemStack(Item.stick, rand.nextInt(4) + 1);
+			case 6: return new ItemStack(Item.toolAxeWood, 1, rand.nextInt(63));
+			case 7: return new ItemStack(Item.toolPickaxeWood, 1, rand.nextInt(63));
+			case 8: return new ItemStack(Item.toolSwordWood, 1, rand.nextInt(63));
 			case 9: return new ItemStack(Block.logOak);
 			case 0: default: return null;
 		}
 	}
 
-	private ItemStack generateBasementLoot(Random random) {
-		switch (random.nextInt(11)) {
-			case 1: return new ItemStack(Item.sulphur, random.nextInt(4) + 1);
-			case 2: return new ItemStack(Item.bone, random.nextInt(4) + 1);
-			case 3: return new ItemStack(Item.string, random.nextInt(4) + 1);
-			case 4: return new ItemStack(Item.toolBow, 1, random.nextInt(383));
-			case 5: return new ItemStack(Item.ammoArrow, random.nextInt(8) + 1);
-			case 6: return new ItemStack(Item.handcannonUnloaded, 1, random.nextInt(100));
+	private ItemStack generateBasementLoot(Random rand) {
+		switch (rand.nextInt(11)) {
+			case 1: return new ItemStack(Item.sulphur, rand.nextInt(4) + 1);
+			case 2: return new ItemStack(Item.bone, rand.nextInt(4) + 1);
+			case 3: return new ItemStack(Item.string, rand.nextInt(4) + 1);
+			case 4: return new ItemStack(Item.toolBow, 1, rand.nextInt(383));
+			case 5: return new ItemStack(Item.ammoArrow, rand.nextInt(8) + 1);
+			case 6: return new ItemStack(Item.handcannonUnloaded, 1, rand.nextInt(100));
 			case 7: return new ItemStack(Item.ammoChargeExplosive);
-			case 8: return new ItemStack(Item.bucketWater);
-			case 9: return random.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
-			case 10: return new ItemStack(Item.dustSugar, random.nextInt(6) + 1);
+			case 8: return rand.nextInt(3) == 0 ? new ItemStack(Item.bucketWater) : new ItemStack(Item.bucket);
+			case 9: return rand.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
+			case 10: return new ItemStack(Item.dustSugar, rand.nextInt(6) + 1);
 			case 0: default: return null;
 		}
 	}
@@ -202,7 +202,7 @@ public class WorldFeatureRuins extends WorldFeature {
 					TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y - 5, z - 2);
 
 					for (int i = 0; i < 4; ++i) {
-						ItemStack stack = this.generateBasementLoot(random);
+						ItemStack stack = generateBasementLoot(random);
 						if (stack != null && tile != null) {
 							tile.setInventorySlotContents(random.nextInt(tile.getSizeInventory()), stack);
 						}

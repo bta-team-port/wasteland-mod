@@ -11,10 +11,7 @@ import net.minecraft.core.world.generate.feature.*;
 import net.minecraft.core.world.noise.PerlinNoise;
 import net.minecraft.core.world.type.WorldTypes;
 import teamport.wasteland.Wasteland;
-import teamport.wasteland.core.world.generation.WorldFeatureRuins;
-import teamport.wasteland.core.world.generation.WorldFeatureSkyscraperOne;
-import teamport.wasteland.core.world.generation.WorldFeatureStore;
-import teamport.wasteland.core.world.generation.WorldFeatureWastesFire;
+import teamport.wasteland.core.world.generation.*;
 
 import java.util.Random;
 
@@ -85,18 +82,23 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			}
 		}
 
-		for (int chance = 0; chance < 32; chance++) {
+		byte buildingByte = 0;
+		if (biome == Wasteland.biomeWastesCity) {
+			buildingByte = 48;
+		}
+
+		if (biome == Wasteland.biomeWastes) {
+			buildingByte = 32;
+		}
+
+		// Generic ruins
+		for (int chance = 0; chance < buildingByte; chance++) {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			if (rand.nextInt(32) == 0) {
+			if (rand.nextInt(24) == 0) {
 				new WorldFeatureRuins().generate(world, rand, xf, yf, zf);
 			}
-		}
-
-		byte buildingByte = 0;
-		if (biome == Wasteland.biomeWastesCity) {
-			buildingByte = 32;
 		}
 
 		// Skyscraper
@@ -104,7 +106,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			if (rand.nextInt(20) == 0) {
+			if (rand.nextInt(48) == 0 && biome == Wasteland.biomeWastesCity) {
 				new WorldFeatureSkyscraperOne().generate(world, rand, xf, yf, zf);
 			}
 		}
@@ -114,8 +116,18 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			if (rand.nextInt(30) == 0) {
+			if (rand.nextInt(56) == 0 && biome == Wasteland.biomeWastesCity) {
 				new WorldFeatureStore().generate(world, rand, xf, yf, zf);
+			}
+		}
+
+		// House
+		for (int chance = 0; chance < buildingByte; chance++) {
+			int xf = x + rand.nextInt(16) + 8;
+			int yf = minY + rand.nextInt(rangeY);
+			int zf = z + rand.nextInt(16) + 8;
+			if (rand.nextInt(32) == 0 && biome == Wasteland.biomeWastesCity) {
+				new WorldFeatureHouse().generate(world, rand, xf, yf, zf);
 			}
 		}
 
