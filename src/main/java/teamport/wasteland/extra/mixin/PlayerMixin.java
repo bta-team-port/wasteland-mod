@@ -1,12 +1,12 @@
 package teamport.wasteland.extra.mixin;
 
-import net.minecraft.core.entity.EntityLiving;
-import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.entity.Mob;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.player.gamemode.Gamemode;
-import net.minecraft.core.player.inventory.InventoryPlayer;
+import net.minecraft.core.player.inventory.container.ContainerInventory;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.weather.Weather;
+import net.minecraft.core.world.weather.Weathers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,15 +15,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import teamport.wasteland.WastelandConfig;
 import teamport.wasteland.core.world.WorldTypeWasteland;
 
-@Mixin(value = EntityPlayer.class, remap = false)
-public abstract class EntityPlayerMixin extends EntityLiving {
-	@Shadow
-	public InventoryPlayer inventory;
+@Mixin(value = Player.class, remap = false)
+public abstract class PlayerMixin extends Mob {
 
 	@Shadow
 	public Gamemode gamemode;
 
-	public EntityPlayerMixin(World world) {
+	@Shadow
+	public ContainerInventory inventory;
+
+	public PlayerMixin(World world) {
 		super(world);
 	}
 
@@ -34,9 +35,9 @@ public abstract class EntityPlayerMixin extends EntityLiving {
 			if (daysPassed > 14 && world.isDaytime() && inventory.armorInventory[3] == null && !gamemode.isImmuneToFire()) {
 				float brightness = getBrightness(1);
 				if (brightness > 0.7F
-					&& world.canBlockSeeTheSky(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z))
+					&& world.canBlockSeeTheSky(MathHelper.floor(x), MathHelper.floor(y), MathHelper.floor(z))
 					&& random.nextFloat() * 30.0F < (brightness - 0.4F) * 2
-					&& (world.getCurrentWeather() != Weather.overworldFog || world.weatherManager.getWeatherPower() < 0.75F)) {
+					&& (world.getCurrentWeather() != Weathers.OVERWORLD_FOG || world.weatherManager.getWeatherPower() < 0.75F)) {
 					remainingFireTicks = 300;
 				}
 			}

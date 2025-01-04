@@ -1,52 +1,51 @@
 package teamport.wasteland.core.world.generation;
 
-import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntityChest;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.Items;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 
 import java.util.Random;
 
 public class WorldFeatureSkyscraperOne extends WorldFeature {
-
 	private ItemStack generateCafeteriaLoot(Random rand) {
 		switch (rand.nextInt(9)) {
-			case 8: return new ItemStack(Item.foodPorkchopCooked, 1);
-			case 7: return new ItemStack(Item.foodApple, rand.nextInt(2) + 1);
-			case 6: return rand.nextInt(100) == 0 ? new ItemStack(Item.foodAppleGold) : null;
-			case 5: return new ItemStack(Item.foodBread, rand.nextInt(3) + 1);
-			case 4: return new ItemStack(Item.foodCherry, rand.nextInt(2) + 1);
-			case 3: return new ItemStack(Item.foodCookie, rand.nextInt(4) + 1);
-			case 2: return new ItemStack(Item.foodFishCooked, 1);
-			case 1: return rand.nextInt(3) == 0 ? new ItemStack(Item.foodStewMushroom, 1) : new ItemStack(Item.bowl, 1);
+			case 8: return new ItemStack(Items.FOOD_PORKCHOP_COOKED);
+			case 7: return new ItemStack(Items.FOOD_APPLE, rand.nextInt(2) + 1);
+			case 6: return rand.nextInt(100) == 0 ? new ItemStack(Items.FOOD_APPLE_GOLD) : null;
+			case 5: return new ItemStack(Items.FOOD_BREAD, rand.nextInt(3) + 1);
+			case 4: return new ItemStack(Items.FOOD_CHERRY, rand.nextInt(2) + 1);
+			case 3: return new ItemStack(Items.FOOD_COOKIE, rand.nextInt(4) + 1);
+			case 2: return new ItemStack(Items.FOOD_FISH_COOKED);
+			case 1: return rand.nextInt(3) == 0 ? new ItemStack(Items.FOOD_STEW_MUSHROOM) : new ItemStack(Items.BOWL);
 			case 0: default: return null;
 		}
 	}
 
 	private ItemStack generateLibraryLoot(Random rand) {
 		switch (rand.nextInt(5)) {
-			case 4: return new ItemStack(Item.dye, rand.nextInt(3) + 1, 0);
-			case 3: return new ItemStack(Item.book, rand.nextInt(3) + 1);
-			case 2: return new ItemStack(Item.paper, rand.nextInt(6) + 1);
-			case 1: return new ItemStack(Item.featherChicken, rand.nextInt(2) + 1);
+			case 4: return new ItemStack(Items.DYE, rand.nextInt(3) + 1, 0);
+			case 3: return new ItemStack(Items.BOOK, rand.nextInt(3) + 1);
+			case 2: return new ItemStack(Items.PAPER, rand.nextInt(6) + 1);
+			case 1: return new ItemStack(Items.FEATHER_CHICKEN, rand.nextInt(2) + 1);
 			case 0: default: return null;
 		}
 	}
 
 	private ItemStack generateStoreLoot(Random rand) {
 		switch (rand.nextInt(11)) {
-			case 10: return rand.nextInt(4) == 0 ? new ItemStack(Item.foodPorkchopRaw, 1) : null;
-			case 9: return rand.nextInt(4) == 0 ? new ItemStack(Item.foodFishRaw, 1) : null;
-			case 8: return new ItemStack(Item.coal, rand.nextInt(4) + 1);
-			case 7: return new ItemStack(Item.bone, rand.nextInt(8) + 1);
-			case 6: return new ItemStack(Item.toolHoeWood, 1, rand.nextInt(63));
-			case 5: return new ItemStack(Item.toolShovelWood, 1, rand.nextInt(63));
-			case 4: return new ItemStack(Item.seedsWheat, rand.nextInt(2) + 1);
-			case 3: return new ItemStack(Item.foodCherry, 1);
-			case 2: return new ItemStack(Item.eggChicken, rand.nextInt(6) + 1);
-			case 1: return new ItemStack(Item.foodBread, 1);
+			case 10: return rand.nextInt(4) == 0 ? new ItemStack(Items.FOOD_PORKCHOP_RAW) : null;
+			case 9: return rand.nextInt(4) == 0 ? new ItemStack(Items.FOOD_FISH_RAW) : null;
+			case 8: return new ItemStack(Items.COAL, rand.nextInt(4) + 1);
+			case 7: return new ItemStack(Items.BONE, rand.nextInt(8) + 1);
+			case 6: return new ItemStack(Items.TOOL_HOE_WOOD, 1, rand.nextInt(63));
+			case 5: return new ItemStack(Items.TOOL_SHOVEL_WOOD, 1, rand.nextInt(63));
+			case 4: return new ItemStack(Items.SEEDS_WHEAT, rand.nextInt(2) + 1);
+			case 3: return new ItemStack(Items.FOOD_CHERRY);
+			case 2: return new ItemStack(Items.EGG_CHICKEN, rand.nextInt(6) + 1);
+			case 1: return new ItemStack(Items.FOOD_BREAD);
 			case 0: default: return null;
 		}
 	}
@@ -56,7 +55,7 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 		for (int _x = x - 6; _x < x + 7; _x++) {
 			for (int _y = y; _y < y + 4; _y++) {
 				for (int _z = z - 6; _z < z + 7; _z++) {
-					world.setBlockWithNotify(_x, _y, _z, rand.nextInt(4) != 0 ? Block.brickStone.id : 0);
+					world.setBlockWithNotify(_x, _y, _z, rand.nextInt(4) != 0 ? Blocks.BRICK_STONE.id() : 0);
 				}
 			}
 		}
@@ -65,8 +64,8 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 			for (int _z = z - 6; _z < z + 7; _z++) {
 				if (_y != y + 3) {
 					if (rand.nextInt(2) == 0) {
-						world.setBlockWithNotify(x - 6, _y, _z, Block.glass.id);
-						world.setBlockWithNotify(x + 6, _y, _z, Block.glass.id);
+						world.setBlockWithNotify(x - 6, _y, _z, Blocks.GLASS.id());
+						world.setBlockWithNotify(x + 6, _y, _z, Blocks.GLASS.id());
 					} else {
 						world.setBlockWithNotify(x - 6, _y, _z, 0);
 						world.setBlockWithNotify(x + 6, _y, _z, 0);
@@ -92,13 +91,8 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 		// Floors & Ceilings
 		for (int _x = x - 5; _x < x + 6; _x++) {
 			for (int _z = z - 5; _z < z + 6; _z++) {
-				if (rand.nextInt(3) == 0) {
-					world.setBlockWithNotify(_x, y - 1, _z, Block.cobbleStone.id);
-					world.setBlockWithNotify(_x, y + 3, _z, Block.cobbleStone.id);
-				} else {
-					world.setBlockWithNotify(_x, y - 1, _z, Block.cobbleStoneMossy.id);
-					world.setBlockWithNotify(_x, y + 3, _z, Block.cobbleStoneMossy.id);
-				}
+				world.setBlockWithNotify(_x, y - 1, _z, rand.nextInt(3) != 0 ? Blocks.COBBLE_STONE_MOSSY.id() : Blocks.COBBLE_STONE.id());
+				world.setBlockWithNotify(_x, y + 3, _z, rand.nextInt(3) == 0 ? Blocks.COBBLE_STONE.id() : Blocks.COBBLE_STONE_MOSSY.id());
 			}
 		}
 
@@ -116,8 +110,8 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 		for (int _x = x - 1; _x < x + 1; _x++) {
 			for (int _z = z - 1; _z < z + 1; _z++) {
 				if (rand.nextInt(2) == 0) {
-					world.setBlockWithNotify(_x, y, _z, Block.fencePlanksOak.id);
-					world.setBlockWithNotify(_x, y + 1, _z, Block.pressureplatePlanksOak.id);
+					world.setBlockWithNotify(_x, y, _z, Blocks.FENCE_PLANKS_OAK.id());
+					world.setBlockWithNotify(_x, y + 1, _z, Blocks.PRESSURE_PLATE_PLANKS_OAK.id());
 				}
 			}
 		}
@@ -126,19 +120,19 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 	private void generateLibraryShelves(World world, Random rand, int x, int y, int z) {
 		for (int _x = x - 3; _x < x; _x++) {
 			if (rand.nextInt(2) == 0) {
-				world.setBlockWithNotify(_x, y, z, Block.bookshelfPlanksOak.id);
-				world.setBlockWithNotify(_x, y + 1, z, Block.bookshelfPlanksOak.id);
+				world.setBlockWithNotify(_x, y, z, Blocks.BOOKSHELF_PLANKS_OAK.id());
+				world.setBlockWithNotify(_x, y + 1, z, Blocks.BOOKSHELF_PLANKS_OAK.id());
 			}
 
 			if (world.rand.nextInt(6) == 0) {
-				world.setBlockWithNotify(_x, y, z, Block.chestPlanksOak.id);
-				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(_x, y, z);
+				world.setBlockWithNotify(_x, y, z, Blocks.CHEST_PLANKS_OAK.id());
+				TileEntityChest tile = (TileEntityChest) world.getTileEntity(_x, y, z);
 
 				for (int i = 0; i < 6; i++) {
 					ItemStack loot = generateLibraryLoot(rand);
 
 					if (loot != null && tile != null) {
-						tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), loot);
+						tile.setItem(rand.nextInt(tile.getContainerSize()), loot);
 					}
 				}
 			}
@@ -148,20 +142,20 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 	private void generateStoreShelvesOne(World world, Random rand, int x, int y, int z) {
 		for (int _z = z - 1; _z < z + 1; _z++) {
 			if (rand.nextInt(3) == 0) {
-				world.setBlockAndMetadataWithNotify(x, y, _z, Block.stairsPlanksOak.id, 1);
-				world.setBlockAndMetadataWithNotify(x, y + 1, _z, Block.stairsPlanksOak.id, 1);
-				world.setBlockAndMetadataWithNotify(x, y + 2, _z, Block.slabPlanksOak.id, 0);
+				world.setBlockAndMetadataWithNotify(x, y, _z, Blocks.STAIRS_PLANKS_OAK.id(), 1);
+				world.setBlockAndMetadataWithNotify(x, y + 1, _z, Blocks.STAIRS_PLANKS_OAK.id(), 1);
+				world.setBlockAndMetadataWithNotify(x, y + 2, _z, Blocks.SLAB_PLANKS_OAK.id(), 0);
 			}
 
 			if (rand.nextInt(16) == 0) {
-				world.setBlockWithNotify(x, y, _z, Block.planksOak.id);
-				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y, _z);
+				world.setBlockWithNotify(x, y, _z, Blocks.CHEST_PLANKS_OAK.id());
+				TileEntityChest tile = (TileEntityChest) world.getTileEntity(x, y, _z);
 
 				for (int i = 0; i < 4; i++) {
 					ItemStack loot = generateStoreLoot(rand);
 
 					if (loot != null && tile != null) {
-						tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), loot);
+						tile.setItem(rand.nextInt(tile.getContainerSize()), loot);
 					}
 				}
 			}
@@ -171,20 +165,20 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 	private void generateStoreShelvesTwo(World world, Random rand, int x, int y, int z) {
 		for (int _x = x - 1; _x < x + 1; _x++) {
 			if (rand.nextInt(3) == 0) {
-				world.setBlockAndMetadataWithNotify(_x, y, z, Block.stairsPlanksOak.id, 2);
-				world.setBlockAndMetadataWithNotify(_x, y + 1, z, Block.stairsPlanksOak.id, 2);
-				world.setBlockAndMetadataWithNotify(_x, y + 2, z, Block.slabPlanksOak.id, 0);
+				world.setBlockAndMetadataWithNotify(_x, y, z, Blocks.STAIRS_PLANKS_OAK.id(), 2);
+				world.setBlockAndMetadataWithNotify(_x, y + 1, z, Blocks.STAIRS_PLANKS_OAK.id(), 2);
+				world.setBlockAndMetadataWithNotify(_x, y + 2, z, Blocks.SLAB_PLANKS_OAK.id(), 0);
 			}
 
 			if (rand.nextInt(16) == 0) {
-				world.setBlockWithNotify(_x, y, z, Block.chestPlanksOak.id);
-				TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(_x, y, z);
+				world.setBlockWithNotify(_x, y, z, Blocks.CHEST_PLANKS_OAK.id());
+				TileEntityChest tile = (TileEntityChest) world.getTileEntity(_x, y, z);
 
 				for (int i = 0; i < 4; i++) {
 					ItemStack loot = generateStoreLoot(rand);
 
 					if (loot != null && tile != null) {
-						tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), loot);
+						tile.setItem(rand.nextInt(tile.getContainerSize()), loot);
 					}
 				}
 			}
@@ -196,16 +190,16 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 			if (rand.nextInt(2) == 0) {
 				// Cafeteria
 				for (int _z = z - 2; _z < z + 3; _z++) {
-					world.setBlockWithNotify(x, y, _z, Block.planksOak.id);
+					world.setBlockWithNotify(x, y, _z, Blocks.PLANKS_OAK.id());
 					if (rand.nextInt(8) == 0) {
-						world.setBlockAndMetadataWithNotify(x, y, _z, Block.chestPlanksOak.id, 3);
+						world.setBlockAndMetadataWithNotify(x, y, _z, Blocks.CHEST_PLANKS_OAK.id(), 3);
 
-						TileEntityChest tile = (TileEntityChest) world.getBlockTileEntity(x, y, _z);
+						TileEntityChest tile = (TileEntityChest) world.getTileEntity(x, y, _z);
 						for (int i = 0; i < 4; i++) {
 							ItemStack loot = generateCafeteriaLoot(rand);
 
 							if (loot != null && tile != null) {
-								tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), loot);
+								tile.setItem(rand.nextInt(tile.getContainerSize()), loot);
 							}
 						}
 					}
@@ -239,14 +233,14 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 	}
 
 	@Override
-	public boolean generate(World world, Random random, int x, int y, int z) {
-		if (y < world.getHeightBlocks() && world.getBlock(x, y - 1, z) == Block.mudBaked && world.getBlock(x, y, z) == null) {
+	public boolean place(World world, Random random, int x, int y, int z) {
+		if (y < world.getHeightBlocks() && world.getBlock(x, y - 1, z) == Blocks.MUD_BAKED && world.getBlock(x, y, z) == null) {
 			// Foundation
 			for (int _x = x - 8; _x < x + 9; _x++) {
 				for (int _y = y - 6; _y < y; _y++) {
 					for (int _z = z - 8; _z < z + 9; _z++) {
-						world.setBlockWithNotify(_x, _y, _z, Block.stone.id);
-						world.setBlockWithNotify(_x, y - 1, _z, Block.cobbleStone.id);
+						world.setBlockWithNotify(_x, _y, _z, Blocks.STONE.id());
+						world.setBlockWithNotify(_x, y - 1, _z, Blocks.COBBLE_STONE.id());
 					}
 				}
 			}
@@ -254,31 +248,31 @@ public class WorldFeatureSkyscraperOne extends WorldFeature {
 			// Sidewalk
 			for (int _x = x - 8; _x < x + 9; _x++) {
 				for (int _z = z - 8; _z < z + 9; _z++) {
-					world.setBlockWithNotify(_x, y - 1, _z, Block.stonePolished.id);
+					world.setBlockWithNotify(_x, y - 1, _z, Blocks.STONE_POLISHED.id());
 				}
 			}
 
 			// Ground level floor
-			int pillarID = random.nextInt(2) == 0 ? Block.logOak.id : Block.brickClay.id;
+			int pillarID = random.nextInt(2) == 0 ? Blocks.LOG_OAK.id() : Blocks.BRICK_CLAY.id();
 			for (int height = 0; height < 5; height++) {
 				generateLevel(world, random, x, y + (height * 4), z, pillarID);
 				generateRandomFloor(world, random, x, y + (height * 4), z);
 			}
 
 			// Doors
-			world.setBlockAndMetadataWithNotify(x - 2, y, z - 6, Block.doorPlanksOakBottom.id, 4);
-			world.setBlockAndMetadataWithNotify(x - 2, y + 1, z - 6, Block.doorPlanksOakTop.id, 4);
-			world.setBlockAndMetadataWithNotify(x - 1, y, z - 6, Block.doorPlanksOakBottom.id, 1);
-			world.setBlockAndMetadataWithNotify(x - 1, y + 1, z - 6, Block.doorPlanksOakTop.id, 1);
+			world.setBlockAndMetadataWithNotify(x - 2, y, z - 6, Blocks.DOOR_PLANKS_OAK_BOTTOM.id(), 4);
+			world.setBlockAndMetadataWithNotify(x - 2, y + 1, z - 6, Blocks.DOOR_PLANKS_OAK_TOP.id(), 4);
+			world.setBlockAndMetadataWithNotify(x - 1, y, z - 6, Blocks.DOOR_PLANKS_OAK_BOTTOM.id(), 1);
+			world.setBlockAndMetadataWithNotify(x - 1, y + 1, z - 6, Blocks.DOOR_PLANKS_OAK_TOP.id(), 1);
 
-			world.setBlockAndMetadataWithNotify(x + 2, y, z - 6, Block.doorPlanksOakBottom.id, 1);
-			world.setBlockAndMetadataWithNotify(x + 2, y + 1, z - 6, Block.doorPlanksOakTop.id, 1);
-			world.setBlockAndMetadataWithNotify(x + 1, y, z - 6, Block.doorPlanksOakBottom.id, 4);
-			world.setBlockAndMetadataWithNotify(x + 1, y + 1, z - 6, Block.doorPlanksOakTop.id, 4);
+			world.setBlockAndMetadataWithNotify(x + 2, y, z - 6, Blocks.DOOR_PLANKS_OAK_BOTTOM.id(), 1);
+			world.setBlockAndMetadataWithNotify(x + 2, y + 1, z - 6, Blocks.DOOR_PLANKS_OAK_TOP.id(), 1);
+			world.setBlockAndMetadataWithNotify(x + 1, y, z - 6, Blocks.DOOR_PLANKS_OAK_BOTTOM.id(), 4);
+			world.setBlockAndMetadataWithNotify(x + 1, y + 1, z - 6, Blocks.DOOR_PLANKS_OAK_TOP.id(), 4);
 
 			// Ladder
 			for (int _y = y; _y < y + 20; _y++) {
-				world.setBlockAndMetadataWithNotify(x, _y, z + 5, Block.ladderOak.id, 2);
+				world.setBlockAndMetadataWithNotify(x, _y, z + 5, Blocks.LADDER_OAK.id(), 2);
 			}
 			return true;
 		}

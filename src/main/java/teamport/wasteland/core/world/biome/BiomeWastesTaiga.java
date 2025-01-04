@@ -1,13 +1,11 @@
 package teamport.wasteland.core.world.biome;
 
-import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.entity.SpawnListEntry;
-import net.minecraft.core.entity.animal.EntityFireflyCluster;
-import net.minecraft.core.entity.animal.EntityWolf;
-import net.minecraft.core.entity.monster.EntityArmoredZombie;
-import net.minecraft.core.entity.monster.EntityCreeper;
-import net.minecraft.core.entity.monster.EntitySnowman;
-import net.minecraft.core.entity.monster.EntitySpider;
+import net.minecraft.core.entity.animal.MobFireflyCluster;
+import net.minecraft.core.entity.animal.MobWolf;
+import net.minecraft.core.entity.monster.MobCreeper;
+import net.minecraft.core.entity.monster.MobZombieArmored;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeShrub;
@@ -20,17 +18,17 @@ public class BiomeWastesTaiga extends Biome {
 	public BiomeWastesTaiga() {
 		super("wastes_taiga");
 		this.setColor(16775936);
-		this.setTopBlock(Block.dirt.id);
-		this.setFillerBlock(Block.dirt.id);
+		this.setTopBlock(Blocks.DIRT.id());
+		this.setFillerBlock(Blocks.DIRT.id());
 		this.setSurfaceSnow();
 		this.spawnableAmbientCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableMonsterList.clear();
 
-		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2));
-		this.spawnableAmbientCreatureList.add(new SpawnListEntry(EntityFireflyCluster.class, 2));
-		this.spawnableMonsterList.add(new SpawnListEntry(EntityCreeper.class, 20));
-		this.spawnableMonsterList.add(new SpawnListEntry(EntityArmoredZombie.class, 5));
+		this.spawnableCreatureList.add(new SpawnListEntry(MobWolf.class, 2));
+		this.spawnableAmbientCreatureList.add(new SpawnListEntry(MobFireflyCluster.class, 2));
+		this.spawnableMonsterList.add(new SpawnListEntry(MobCreeper.class, 20));
+		this.spawnableMonsterList.add(new SpawnListEntry(MobZombieArmored.class, 5));
 	}
 
 	@Override
@@ -41,9 +39,9 @@ public class BiomeWastesTaiga extends Biome {
 	@Override
 	public WorldFeature getRandomWorldGenForTrees(Random random) {
 		if (random.nextInt(4) != 0) {
-			return new WorldFeatureTreeShrub(Block.leavesShrub.id, Block.leavesOak.id);
+			return new WorldFeatureTreeShrub(Blocks.LEAVES_SHRUB.id(), Blocks.LOG_OAK.id());
 		} else {
-			return random.nextInt(8) == 0 ? new WorldFeatureTreeTaigaTall(Block.leavesPine.id, Block.logPine.id) : new WorldFeatureTreeTaigaBushy(Block.leavesPine.id, Block.logPine.id);
+			return random.nextInt(8) == 0 ? new WorldFeatureTreeTaigaTall(Blocks.LEAVES_PINE.id(), Blocks.LOG_PINE.id()) : new WorldFeatureTreeTaigaBushy(Blocks.LEAVES_PINE.id(), Blocks.LOG_PINE.id());
 		}
 	}
 }

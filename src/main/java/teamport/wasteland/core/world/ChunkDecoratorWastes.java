@@ -1,8 +1,6 @@
 package teamport.wasteland.core.world;
 
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLeavesBase;
-import net.minecraft.core.block.BlockSand;
+import net.minecraft.core.block.*;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.chunk.Chunk;
@@ -35,7 +33,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 		int maxY = world.getWorldType().getMaxY();
 		int rangeY = maxY + 1 - minY;
 		float oreHeightModifier = (float)rangeY / 128.0F;
-		BlockSand.fallInstantly = true;
+		BlockLogicSand.fallInstantly = true;
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 		int y = world.getHeightValue(x + 16, z + 16);
@@ -52,7 +50,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rand.nextInt(rangeY - rangeY / 16) + rangeY / 16);
 			int zf = z + rand.nextInt(16) + 8;
 			if (yf < minY + rangeY / 2 || rand.nextInt(10) == 0) {
-				(new WorldFeatureLake(Block.fluidLavaStill.id)).generate(world, rand, xf, yf, zf);
+				(new WorldFeatureLake(Blocks.FLUID_LAVA_STILL.id())).place(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -62,9 +60,9 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(2) == 0) {
-				(new WorldFeatureDungeon(Block.brickStone.id, Block.brickStone.id, null)).generate(world, rand, xf, yf, zf);
+				(new WorldFeatureDungeon(Blocks.BRICK_STONE.id(), Blocks.BRICK_STONE.id(), null)).place(world, rand, xf, yf, zf);
 			} else {
-				(new WorldFeatureDungeon(Block.cobbleStone.id, Block.cobbleStoneMossy.id, null)).generate(world, rand, xf, yf, zf);
+				(new WorldFeatureDungeon(Blocks.COBBLE_STONE.id(), Blocks.COBBLE_STONE_MOSSY.id(), null)).place(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -78,7 +76,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 
 			if (rand.nextInt(1400) == 0) {
 				Random lRand = chunk.getChunkRandom(75644760L);
-				(new WorldFeatureLabyrinth()).generate(world, lRand, xf, yf, zf);
+				(new WorldFeatureLabyrinth()).place(world, lRand, xf, yf, zf);
 			}
 		}
 
@@ -97,7 +95,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(24) == 0) {
-				new WorldFeatureRuins().generate(world, rand, xf, yf, zf);
+				new WorldFeatureRuins().place(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -107,7 +105,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(48) == 0 && biome == Wasteland.biomeWastesCity) {
-				new WorldFeatureSkyscraperOne().generate(world, rand, xf, yf, zf);
+				new WorldFeatureSkyscraperOne().place(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -117,7 +115,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(56) == 0 && biome == Wasteland.biomeWastesCity) {
-				new WorldFeatureStore().generate(world, rand, xf, yf, zf);
+				new WorldFeatureStore().place(world, rand, xf, yf, zf);
 			}
 		}
 
@@ -127,72 +125,72 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
 			if (rand.nextInt(32) == 0 && biome == Wasteland.biomeWastesCity) {
-				new WorldFeatureHouse().generate(world, rand, xf, yf, zf);
+				new WorldFeatureHouse().place(world, rand, xf, yf, zf);
 			}
 		}
 
 		// UNDERGROUND //
 		for(int height = 0; (float)height < 20.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
-			int yz = minY + rand.nextInt(rangeY);
+			int yz = minY + rand.nextInt(rangeY / 2);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.dirt.id, 32, false)).generate(world, rand, xf, yz, zf);
+			(new WorldFeatureOre(Blocks.DIRT.id(), 32)).place(world, rand, xf, yz, zf);
 		}
 
 		for(int height = 0; (float)height < 10.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.gravel.id, 32, false)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(Blocks.GRAVEL.id(), 32)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < 20.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreCoalStone.id, 16, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreCoal.variantMap, 16)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < 20.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 2);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreIronStone.id, 8, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreIron.variantMap, 8)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < 2.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 4);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreGoldStone.id, 8, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreGold.variantMap, 8)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < 8.0F * oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 8);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreRedstoneStone.id, 7, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreRedstone.variantMap, 7)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 8);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreDiamondStone.id, 7, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreDiamond.variantMap, 7)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 2);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.mossStone.id, 32, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicMoss.variantMap, 32)).place(world, rand, xf, yf, zf);
 		}
 
 		for(int height = 0; (float)height < oreHeightModifier; ++height) {
 			int xf = x + rand.nextInt(16);
 			int yf = minY + rand.nextInt(rangeY / 8) + rand.nextInt(rangeY / 8);
 			int zf = z + rand.nextInt(16);
-			(new WorldFeatureOre(Block.oreLapisStone.id, 6, true)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureOre(BlockLogicOreLapis.variantMap, 6)).place(world, rand, xf, yf, zf);
 		}
 
 		// TREES //
@@ -226,20 +224,20 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 		}
 
 		try {
-			BlockLeavesBase.enableDecay = false;
+			BlockLogicLeavesBase.enableDecay = false;
 
 			for(int chance = 0; chance < treeDensity; ++chance) {
 				int xf = x + rand.nextInt(16) + 8;
 				int zf = z + rand.nextInt(16) + 8;
 				WorldFeature feature = biome.getRandomWorldGenForTrees(rand);
-				feature.func_517_a(1, 1, 1);
+				feature.init(1, 1, 1);
 
 				if (rand.nextInt(3) == 0) {
-					feature.generate(world, rand, xf, world.getHeightValue(xf, zf), zf);
+					feature.place(world, rand, xf, world.getHeightValue(xf, zf), zf);
 				}
 			}
 		} finally {
-			BlockLeavesBase.enableDecay = true;
+			BlockLogicLeavesBase.enableDecay = true;
 		}
 
 		// PLANTS //
@@ -249,12 +247,12 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 		}
 
 		for(int chance = 0; chance < grassByte; ++chance) {
-			int type = rand.nextInt(3) == 0 ? Block.tallgrass.id : Block.tallgrassFern.id;
+			int type = rand.nextInt(3) == 0 ? Blocks.TALLGRASS.id() : Blocks.TALLGRASS_FERN.id();
 
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			new WorldFeatureTallGrass(type).generate(world, rand, xf, yf, zf);
+			new WorldFeatureTallGrass(type).place(world, rand, xf, yf, zf);
 		}
 
 
@@ -271,7 +269,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			(new WorldFeatureDeadBush(Block.deadbush.id)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureDeadBush(Blocks.DEADBUSH.id())).place(world, rand, xf, yf, zf);
 		}
 
 		byte cactusByte = 0;
@@ -283,21 +281,21 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			new WorldFeatureCactus().generate(world, rand, xf, yf, zf);
+			new WorldFeatureCactus().place(world, rand, xf, yf, zf);
 		}
 
 		if (rand.nextInt(4) == 0) {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			(new WorldFeatureFlowers(Block.mushroomBrown.id)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureFlowers(Blocks.MUSHROOM_BROWN.id(), 64, false)).place(world, rand, xf, yf, zf);
 		}
 
 		if (rand.nextInt(8) == 0) {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			(new WorldFeatureFlowers(Block.mushroomRed.id)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureFlowers(Blocks.MUSHROOM_RED.id(), 64, false)).place(world, rand, xf, yf, zf);
 		}
 
 		// WASTES FIRE //
@@ -311,7 +309,7 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rangeY);
 			int zf = z + rand.nextInt(16) + 8;
-			new WorldFeatureWastesFire().generate(world, rand, xf, yf, zf);
+			new WorldFeatureWastesFire().place(world, rand, xf, yf, zf);
 		}
 
 		// RANDOM FLUIDS //
@@ -319,14 +317,14 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rand.nextInt(rangeY - rangeY / 16) + rangeY / 16) / 2;
 			int zf = z + rand.nextInt(16) + 8;
-			(new WorldFeatureLiquid(Block.fluidWaterFlowing.id)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureLiquid(Blocks.FLUID_WATER_FLOWING.id())).place(world, rand, xf, yf, zf);
 		}
 
 		for(int chance = 0; chance < 20; ++chance) {
 			int xf = x + rand.nextInt(16) + 8;
 			int yf = minY + rand.nextInt(rand.nextInt(rand.nextInt(rangeY - rangeY / 8) + rangeY / 16) + rangeY / 16);
 			int zf = z + rand.nextInt(16) + 8;
-			(new WorldFeatureLiquid(Block.fluidLavaFlowing.id)).generate(world, rand, xf, yf, zf);
+			(new WorldFeatureLiquid(Blocks.FLUID_LAVA_FLOWING.id())).place(world, rand, xf, yf, zf);
 		}
 
 		int oceanY = world.getWorldType().getOceanY();
@@ -336,16 +334,16 @@ public class ChunkDecoratorWastes implements ChunkDecorator {
 				int dy = world.getHeightValue(dx, dz);
 				Biome localBiome = world.getBlockBiome(dx, dy, dz);
 				if ((localBiome.hasSurfaceSnow() || world.worldType == WorldTypes.OVERWORLD_WINTER) && dy > 0 && dy < world.getHeightBlocks() && world.isAirBlock(dx, dy, dz) && world.getBlockMaterial(dx, dy - 1, dz).blocksMotion()) {
-					world.setBlockWithNotify(dx, dy, dz, Block.layerSnow.id);
+					world.setBlockWithNotify(dx, dy, dz, Blocks.LAYER_SNOW.id());
 				}
 
-				if ((localBiome.hasSurfaceSnow() || world.worldType == WorldTypes.OVERWORLD_WINTER) && (world.getBlockId(dx, oceanY - 1, dz) == Block.fluidWaterStill.id || world.getBlockId(dx, oceanY - 1, dz) == Block.fluidWaterFlowing.id)) {
-					world.setBlockWithNotify(dx, oceanY - 1, dz, Block.ice.id);
+				if ((localBiome.hasSurfaceSnow() || world.worldType == WorldTypes.OVERWORLD_WINTER) && (world.getBlockId(dx, oceanY - 1, dz) == Blocks.FLUID_WATER_STILL.id() || world.getBlockId(dx, oceanY - 1, dz) == Blocks.FLUID_WATER_FLOWING.id())) {
+					world.setBlockWithNotify(dx, oceanY - 1, dz, Blocks.ICE.id());
 				}
 			}
 		}
 
-		BlockSand.fallInstantly = false;
+		BlockLogicSand.fallInstantly = false;
 		world.scheduledUpdatesAreImmediate = false;
 	}
 }

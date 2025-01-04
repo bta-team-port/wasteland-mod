@@ -4,12 +4,12 @@
   "package": "teamport.wasteland.extra.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockDeadBushMixin",
-    "BlockFluidFlowingMixin",
-    "EntityArmoredZombieMixin",
-    "EntityCreeperMixin",
-    "EntityMonsterMixin",
-    "EntityPlayerMixin"
+    "BlockLogicDeadBushMixin",
+    "BlockLogicFluidFlowingMixin",
+    "MobZombieArmoredMixin",
+    "MobCreeperMixin",
+    "MobMixin",
+    "PlayerMixin"
   ],
   "client": [
   ],

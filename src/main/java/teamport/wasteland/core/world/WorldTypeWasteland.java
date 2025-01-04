@@ -1,24 +1,30 @@
 package teamport.wasteland.core.world;
 
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.provider.BiomeProvider;
-import net.minecraft.core.world.config.season.SeasonConfigCycle;
+import net.minecraft.core.world.config.season.SeasonConfig;
 import net.minecraft.core.world.generate.chunk.ChunkGenerator;
 import net.minecraft.core.world.season.Seasons;
-import net.minecraft.core.world.type.WorldTypeOverworld;
-import net.minecraft.core.world.weather.Weather;
-import net.minecraft.core.world.wind.WindManagerGeneric;
+import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
+import net.minecraft.core.world.weather.Weathers;
 
 public class WorldTypeWasteland extends WorldTypeOverworld {
-	public WorldTypeWasteland(String languageKey) {
-		super(languageKey,
-			Weather.overworldClear,
-			new WindManagerGeneric(), SeasonConfigCycle.builder()
-			.withSeasonInCycle(Seasons.OVERWORLD_SPRING, 14)
-			.withSeasonInCycle(Seasons.OVERWORLD_SUMMER, 14)
-			.withSeasonInCycle(Seasons.OVERWORLD_FALL, 14)
-			.withSeasonInCycle(Seasons.OVERWORLD_WINTER, 14)
-			.build());
+	public WorldTypeWasteland(Properties properties) {
+		super(properties);
+	}
+
+	public static Properties defaultProperties(String translationKey) {
+		return Properties.of(translationKey)
+			.defaultWeather(Weathers.OVERWORLD_FOG)
+			.brightnessRamp(createLightRamp())
+			.seasonConfig(SeasonConfig.builder().withSeasonInCycle(Seasons.OVERWORLD_SPRING, 14)
+				.withSeasonInCycle(Seasons.OVERWORLD_SUMMER, 14)
+				.withSeasonInCycle(Seasons.OVERWORLD_FALL, 14)
+				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, 14)
+				.build()).oceanBlock(null)
+			.fillerBlock(Blocks.STONE)
+			.allowRespawn();
 	}
 
 	@Override
@@ -37,18 +43,8 @@ public class WorldTypeWasteland extends WorldTypeOverworld {
 	}
 
 	@Override
-	public int getOceanBlock() {
-		return 0;
-	}
-
-	@Override
 	public BiomeProvider createBiomeProvider(World world) {
 		return new BiomeProviderWasteland(world.getRandomSeed(), this);
-	}
-
-	@Override
-	public float getCloudHeight() {
-		return 192;
 	}
 
 	@Override

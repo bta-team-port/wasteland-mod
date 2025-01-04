@@ -3,8 +3,11 @@ package teamport.wasteland;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.Biomes;
+import net.minecraft.core.world.settings.WorldSettings;
 import net.minecraft.core.world.type.WorldType;
+import net.minecraft.core.world.type.WorldTypeGroups;
 import net.minecraft.core.world.type.WorldTypes;
+import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import teamport.wasteland.core.world.*;
@@ -35,9 +38,12 @@ public class Wasteland implements ModInitializer, GameStartEntrypoint {
 		biomewastesTaiga = Biomes.register("biome.wastes_taiga", new BiomeWastesTaiga());
 		biomeWastesDesert = Biomes.register("biome.wastes_desert", new BiomeWastesDesert());
 		biomeWastesCity = Biomes.register("biome.wastes_city", new BiomeWastesCity());
-		worldType_Wasteland = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland("wasteland.world.default"));
-		worldType_Wasteland_Extended = WorldTypes.register("wasteland.world.extended", new WorldTypeWastelandExtended("wasteland.world.extended"));
+		worldType_Wasteland = WorldTypes.register("wasteland.world.default", new WorldTypeWasteland(WorldTypeWasteland.defaultProperties("wasteland.world.default")));
+		worldType_Wasteland_Extended = WorldTypes.register("wasteland.world.extended", new WorldTypeWastelandExtended(WorldTypeWasteland.defaultProperties("wasteland.world.extended")));
 		BiomeProviderWasteland.init();
+
+		WorldTypeGroups.GROUPS.add(new WorldTypeGroups.Group(worldType_Wasteland));
+		WorldTypeGroups.GROUPS.add(new WorldTypeGroups.Group(worldType_Wasteland_Extended));
 	}
 
 	@Override
