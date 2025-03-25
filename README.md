@@ -4,9 +4,14 @@ Originally by Silver_Weasel on the Minecraft Forums.
 
 In the Year of 1337, an apocalypse hit Minecraftia. The sky became dark, the grass died away, forest fires became rampant, and the rivers ran dry. The only ones left alive are the creatures of the night, and one human, trying to survive.
 
+# A new worldtype for harder survival!
+**Features**
+* No grass! Which means no passive animals, and no hoeing grass for seeds!
+* No leaves! See how your wood supply plenishes when life only flurishes in the coldest of conditions...
+* No oceans! Try to make a farm when the main water supplies have dried out. (Hint - check underground)
+* Optional config settings for harder challenges!
+
 # Requirements
-BTA 7.2_01
+[BTA! Babric Instance 7.3](<https://github.com/Turnip-Labs/babric-instance-repo/releases/tag/v7.3>)
 
-[Halplibe 4.1.3](https://github.com/Turnip-Labs/bta-halplibe/releases/tag/4.1.3)
 
-[TerrainAPI 1.4.4-7.2](https://github.com/UselessSolutions/TerrainAPI/releases/tag/v1.4.4-7.2-pre1)
