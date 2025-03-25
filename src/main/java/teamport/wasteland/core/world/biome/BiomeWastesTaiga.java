@@ -21,8 +21,6 @@ public class BiomeWastesTaiga extends Biome {
 		this.setTopBlock(Blocks.DIRT.id());
 		this.setFillerBlock(Blocks.DIRT.id());
 		this.setSurfaceSnow();
-		this.spawnableAmbientCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
 		this.spawnableMonsterList.clear();
 
 		this.spawnableCreatureList.add(new SpawnListEntry(MobWolf.class, 2));

@@ -136,8 +136,8 @@ public class WorldFeatureStore extends WorldFeature {
 	private void generateBuilding(World world, Random rand, int x, int y, int z) {
 		// Walls
 		for (int _x = x - 7; _x < x + 7; _x++) {
-			for (int _y = y; _y < y + 4; _y++) {
-				for (int _z = z - 7; _z < z + 7; _z++) {
+			for (int _z = z - 7; _z < z + 7; _z++) {
+				for (int _y = y; _y < y + 4; _y++) {
 					if (rand.nextInt(3) != 0) {
 						world.setBlockWithNotify(_x, _y, _z, Blocks.BRICK_LIMESTONE.id());
 						world.setBlockWithNotify(_x, y + 4, _z, Blocks.BRICK_STONE.id());
@@ -147,6 +147,10 @@ public class WorldFeatureStore extends WorldFeature {
 					world.setBlockWithNotify(_x, y + 5, _z, Blocks.SLAB_BRICK_STONE.id());
 
 					world.setBlockWithNotify(_x, y - 1, _z, rand.nextInt(3) == 0 ? Blocks.COBBLE_STONE.id() : Blocks.COBBLE_STONE_MOSSY.id());
+				}
+
+				for (int _y = y - 7; _y < y - 1; _y++) {
+					world.setBlockWithNotify(_x, _y, _z, Blocks.STONE.id());
 				}
 			}
 		}

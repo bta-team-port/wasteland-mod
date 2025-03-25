@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Wasteland Mod",
-  "description": "A port of Silver_Weasel's original Wasteland mod.",
+  "description": "A remake of Silver_Weasel's original Wasteland mod.",
   "authors": [
     "Team Port"
   ],
@@ -12,8 +12,9 @@
 		"Silver_Weasel (original mod)"
 	],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://github.com/bta-team-port",
+    "sources": "https://github.com/bta-team-port/wasteland-mod",
+		"issues": "https://github.com/bta-team-port/wasteland-mod/issues"
   },
 
 	"icon": "icon.png",
@@ -26,6 +27,12 @@
 		],
 		"afterGameStart": [
 			"teamport.wasteland.Wasteland"
+		],
+		"beforeClientStart": [
+			"teamport.wasteland.WastelandClient"
+		],
+		"afterClientStart": [
+			"teamport.wasteland.WastelandClient"
 		]
 	},
   "mixins": [
